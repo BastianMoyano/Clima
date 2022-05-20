@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClimaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="proceso">
+    <Key>
+      <PropertyRef Name="idProceso" />
+    </Key>
+    <Property Name="idProceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="clima" Type="varchar" MaxLength="59" Nullable="false" />
+    <Property Name="temperatura" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="humedad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="fechaProceso" Type="smalldatetime" Nullable="false" />
+    <Property Name="lugar" Type="varchar" MaxLength="50" />
+    <Property Name="tiempo_de_riego" Type="time" Precision="7" />
+    <Property Name="sector_de_riego" Type="varchar" MaxLength="50" />
+    <Property Name="calculo_de_agua" Type="int" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="nombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fechaCreacion" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_proceso_usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="proceso" Type="Self.proceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="proceso">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClimaModelStoreContainer">
+    <EntitySet Name="proceso" EntityType="Self.proceso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_proceso_usuario" Association="Self.FK_proceso_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="proceso" EntitySet="proceso" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

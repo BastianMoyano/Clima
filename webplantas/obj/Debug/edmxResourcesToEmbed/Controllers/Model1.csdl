@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClimaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ClimaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="proceso" EntityType="ClimaModel.proceso" />
+    <EntitySet Name="usuario" EntityType="ClimaModel.usuario" />
+    <AssociationSet Name="FK_proceso_usuario" Association="ClimaModel.FK_proceso_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="proceso" EntitySet="proceso" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="proceso">
+    <Key>
+      <PropertyRef Name="idProceso" />
+    </Key>
+    <Property Name="idProceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <Property Name="clima" Type="String" Nullable="false" MaxLength="59" FixedLength="false" Unicode="false" />
+    <Property Name="temperatura" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="humedad" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="fechaProceso" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tiempo_de_riego" Type="Time" Precision="7" />
+    <Property Name="sector_de_riego" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="calculo_de_agua" Type="Int32" />
+    <NavigationProperty Name="usuario" Relationship="ClimaModel.FK_proceso_usuario" FromRole="proceso" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="nombreUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="proceso" Relationship="ClimaModel.FK_proceso_usuario" FromRole="usuario" ToRole="proceso" />
+  </EntityType>
+  <Association Name="FK_proceso_usuario">
+    <End Type="ClimaModel.usuario" Role="usuario" Multiplicity="1" />
+    <End Type="ClimaModel.proceso" Role="proceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="proceso">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

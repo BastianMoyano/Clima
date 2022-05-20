@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClimaModelStoreContainer" CdmEntityContainer="ClimaEntities">
+    <EntitySetMapping Name="proceso">
+      <EntityTypeMapping TypeName="ClimaModel.proceso">
+        <MappingFragment StoreEntitySet="proceso">
+          <ScalarProperty Name="calculo_de_agua" ColumnName="calculo_de_agua" />
+          <ScalarProperty Name="sector_de_riego" ColumnName="sector_de_riego" />
+          <ScalarProperty Name="tiempo_de_riego" ColumnName="tiempo_de_riego" />
+          <ScalarProperty Name="lugar" ColumnName="lugar" />
+          <ScalarProperty Name="fechaProceso" ColumnName="fechaProceso" />
+          <ScalarProperty Name="humedad" ColumnName="humedad" />
+          <ScalarProperty Name="temperatura" ColumnName="temperatura" />
+          <ScalarProperty Name="clima" ColumnName="clima" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idProceso" ColumnName="idProceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="ClimaModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

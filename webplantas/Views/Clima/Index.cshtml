@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Clima</title>
+    <link rel="stylesheet" href="~/Asset/css/style.css">
+    <link href="~/plugins/noty/lib/noty.css" rel="stylesheet" />
+    <link href="~/plugins/noty/lib/themes/sunset.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="contenedor">
+        <div id="caja1">
+            <h1 id="temperatura-valor"></h1>
+            <h1 id="temperatura-descripcion"></h1>
+            <input type="hidden" id="temperatura" name="name" value="" />
+            <input type="hidden" id="clima" name="name" value="" />
+        </div>
+        <div id="caja2">
+            <h2 id="ubicacion"></h2>
+            <img id="icono-animado" src="" alt="" height="128" width="128">
+            <input type="hidden" id="destino" name="name" value="" />
+
+        </div>
+        <div id="caja3">
+            <h3>Veloc. del Viento</h3>
+            <h1 id="viento-velocidad"></h1>
+
+        </div>
+        <div id="caja1">
+            <h3>Humedad</h3>
+            <h1 id="humedad-descripcion"></h1>
+            <input type="hidden" id="humedad" name="name" value="" />
+
+        </div>
+        <div id="caja2">
+            <h3>Selecciona el sector</h3>
+            <select name="select" id="sector">
+                <option value="" selected>Selecciona Campo</option>
+                <option value="Adelante">Adelante</option>
+                <option value="Centro">Centro</option>
+                <option value="Atras">Atras</option>
+            </select>
+
+            <h3>tiempo de riego</h3>
+            <input type="time" name="eta"list="listalimitestiempo" id="tiempoderiego" >
+
+            <datalist id="listalimitestiempo" min="00:15" max="00:45" required>
+
+                <option value="00:15">
+                <option value="00:20">
+                <option value="00:25">
+                <option value="00:30">
+                <option value="00:35">
+                <option value="00:40">
+                <option value="00:45">
+
+            </datalist>
+
+        </div>
+        <div id="caja3">
+            <button type="button" id="Proceso" class="btn btn-success">Generar Proceso</button>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Asset/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/plugins/noty/lib/bounce.min.js"></script>
+    <script src="~/plugins/noty/lib/noty.js"></script>
+    <script src="~/Asset/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/Asset/js/app.js"></script>
+</body>
+</html>

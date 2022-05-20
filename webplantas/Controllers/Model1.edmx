@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ClimaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="proceso">
+          <Key>
+            <PropertyRef Name="idProceso" />
+          </Key>
+          <Property Name="idProceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="clima" Type="varchar" MaxLength="59" Nullable="false" />
+          <Property Name="temperatura" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="humedad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fechaProceso" Type="smalldatetime" Nullable="false" />
+          <Property Name="lugar" Type="varchar" MaxLength="50" />
+          <Property Name="tiempo_de_riego" Type="time" Precision="7" />
+          <Property Name="sector_de_riego" Type="varchar" MaxLength="50" />
+          <Property Name="calculo_de_agua" Type="int" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fechaCreacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_proceso_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="proceso" Type="Self.proceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="proceso">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClimaModelStoreContainer">
+          <EntitySet Name="proceso" EntityType="Self.proceso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_proceso_usuario" Association="Self.FK_proceso_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="proceso" EntitySet="proceso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClimaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ClimaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="proceso" EntityType="ClimaModel.proceso" />
+          <EntitySet Name="usuario" EntityType="ClimaModel.usuario" />
+          <AssociationSet Name="FK_proceso_usuario" Association="ClimaModel.FK_proceso_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="proceso" EntitySet="proceso" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="proceso">
+          <Key>
+            <PropertyRef Name="idProceso" />
+          </Key>
+          <Property Name="idProceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="clima" Type="String" Nullable="false" MaxLength="59" FixedLength="false" Unicode="false" />
+          <Property Name="temperatura" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="humedad" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="fechaProceso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tiempo_de_riego" Type="Time" Precision="7" />
+          <Property Name="sector_de_riego" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="calculo_de_agua" Type="Int32" />
+          <NavigationProperty Name="usuario" Relationship="ClimaModel.FK_proceso_usuario" FromRole="proceso" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombreUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="proceso" Relationship="ClimaModel.FK_proceso_usuario" FromRole="usuario" ToRole="proceso" />
+        </EntityType>
+        <Association Name="FK_proceso_usuario">
+          <End Type="ClimaModel.usuario" Role="usuario" Multiplicity="1" />
+          <End Type="ClimaModel.proceso" Role="proceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="proceso">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClimaModelStoreContainer" CdmEntityContainer="ClimaEntities">
+          <EntitySetMapping Name="proceso">
+            <EntityTypeMapping TypeName="ClimaModel.proceso">
+              <MappingFragment StoreEntitySet="proceso">
+                <ScalarProperty Name="calculo_de_agua" ColumnName="calculo_de_agua" />
+                <ScalarProperty Name="sector_de_riego" ColumnName="sector_de_riego" />
+                <ScalarProperty Name="tiempo_de_riego" ColumnName="tiempo_de_riego" />
+                <ScalarProperty Name="lugar" ColumnName="lugar" />
+                <ScalarProperty Name="fechaProceso" ColumnName="fechaProceso" />
+                <ScalarProperty Name="humedad" ColumnName="humedad" />
+                <ScalarProperty Name="temperatura" ColumnName="temperatura" />
+                <ScalarProperty Name="clima" ColumnName="clima" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idProceso" ColumnName="idProceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="ClimaModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
