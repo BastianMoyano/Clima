@@ -197,6 +197,7 @@
     <Content Include="Asset\animated\weather.svg" />
     <Content Include="Asset\animated\weather_sagittarius.svg" />
     <Content Include="Asset\animated\weather_sunset.svg" />
+    <Content Include="Asset\css\padre.css" />
     <Content Include="Asset\css\sb-admin-2.css" />
     <Content Include="Asset\css\sb-admin-2.min.css" />
     <Content Include="Asset\css\style.css" />
@@ -208,6 +209,8 @@
     <Content Include="Asset\img\undraw_profile_3.svg" />
     <Content Include="Asset\img\undraw_rocket.svg" />
     <Content Include="Asset\js\app.js" />
+    <Content Include="Asset\js\datatables.bundle.css" />
+    <Content Include="Asset\js\datatables.bundle.js" />
     <Content Include="Asset\js\demo\chart-area-demo.js" />
     <Content Include="Asset\js\demo\chart-bar-demo.js" />
     <Content Include="Asset\js\demo\chart-pie-demo.js" />
@@ -2125,6 +2128,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Login\Login.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Proceso\Proceso.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2141,6 +2145,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Clima\Index.cshtml" />
+    <Content Include="Views\Clima\Historico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

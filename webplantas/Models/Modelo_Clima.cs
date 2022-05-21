@@ -67,5 +67,47 @@ namespace webplantas.Models
             }
 
         }
+
+        public static object CargarProcesoporusuario()
+        {
+            try
+            {
+                using (ClimaEntities db = new ClimaEntities())
+                {
+                    int id = Convert.ToInt32(HttpContext.Current.Session["idUsuario"]);
+
+                    object[] Datos = (from e in db.proceso
+                                      join u in db.usuario
+                                      on e.idUsuario equals u.idUsuario
+                                      where e.idUsuario == id
+                                      select new
+                                      {
+                                          e.idProceso,
+                                          u.nombreUsuario,
+                                          e.clima,
+                                          e.temperatura,
+                                          e.humedad,
+                                          e.fechaProceso,
+                                          e.lugar,
+                                          e.tiempo_de_riego,
+                                          e.sector_de_riego,
+                                          e.calculo_de_agua
+
+                                      }).ToArray();
+
+
+                    return new { RESPUESTA = true, TIPO = 0, Datos };
+
+
+
+                }
+
+            }
+            catch (Exception ERROR)
+            {
+                return new { RESPUESTA = false, TIPO = 0, Error = ERROR.Message };
+            }
+        }
+
     }
 }

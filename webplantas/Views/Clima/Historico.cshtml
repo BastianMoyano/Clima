@@ -1,0 +1,53 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Clima</title>
+
+
+
+    <link rel="stylesheet" href="~/Asset/css/style.css">
+    <link href="~/plugins/noty/lib/noty.css" rel="stylesheet" />
+    <link href="~/plugins/noty/lib/themes/sunset.css" rel="stylesheet" />
+    <link href="~/Asset/css/padre.css" rel="stylesheet" />
+    <link href="~/Asset/js/datatables.bundle.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="padre">
+        <table class="v-datatable v-table theme--light table table-hover table-striped table-borderless table-bordered" id="historico">
+            <thead>
+                <tr>
+                    <th role="columnheader" scope="col" aria-label="Fecha: Sorted ascending. Activate to sort descending." aria-sort="ascending" tabindex="0" class="column sortable active asc text-xs-left">Responsable<i aria-hidden="true" class="v-icon material-icons theme--light" style="font-size: 16px;"></i></th>
+                    <th role="columnheader" scope="col" aria-label="Fecha: Sorted ascending. Activate to sort descending." aria-sort="ascending" tabindex="0" class="column sortable active asc text-xs-left">Clima<i aria-hidden="true" class="v-icon material-icons theme--light" style="font-size: 16px;"></i></th>
+                    <th role="columnheader" scope="col" aria-label="Fecha: Sorted ascending. Activate to sort descending." aria-sort="ascending" tabindex="0" class="column sortable active asc text-xs-left">Temperatura<i aria-hidden="true" class="v-icon material-icons theme--light" style="font-size: 16px;"></i></th>
+                    <th role="columnheader" scope="col" aria-label="Fecha: Sorted ascending. Activate to sort descending." aria-sort="ascending" tabindex="0" class="column sortable active asc text-xs-left">Humedad<i aria-hidden="true" class="v-icon material-icons theme--light" style="font-size: 16px;"></i></th>
+                    <th role="columnheader" scope="col" aria-label="Fecha: Sorted ascending. Activate to sort descending." aria-sort="ascending" tabindex="0" class="column sortable active asc text-xs-left">Fecha de Inicio<i aria-hidden="true" class="v-icon material-icons theme--light" style="font-size: 16px;"></i></th>
+                    <th role="columnheader" scope="col" aria-label="Fecha: Sorted ascending. Activate to sort descending." aria-sort="ascending" tabindex="0" class="column sortable active asc text-xs-left">Lugar<i aria-hidden="true" class="v-icon material-icons theme--light" style="font-size: 16px;"></i></th>
+                    <th role="columnheader" scope="col" aria-label="Fecha: Sorted ascending. Activate to sort descending." aria-sort="ascending" tabindex="0" class="column sortable active asc text-xs-left">Tiempo de Riego<i aria-hidden="true" class="v-icon material-icons theme--light" style="font-size: 16px;"></i></th>
+                    <th role="columnheader" scope="col" aria-label="Fecha: Sorted ascending. Activate to sort descending." aria-sort="ascending" tabindex="0" class="column sortable active asc text-xs-left">Sector<i aria-hidden="true" class="v-icon material-icons theme--light" style="font-size: 16px;"></i></th>
+                    <th role="columnheader" scope="col" aria-label="Fecha: Sorted ascending. Activate to sort descending." aria-sort="ascending" tabindex="0" class="column sortable active asc text-xs-left">cantidad de agua gastada<i aria-hidden="true" class="v-icon material-icons theme--light" style="font-size: 16px;"></i></th>
+                </tr>
+            </thead>
+            <tbody id="mod-datos">
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/plugins/noty/lib/bounce.min.js"></script>
+    <script src="~/plugins/noty/lib/noty.js"></script>
+    @*<script src="~/Asset/vendor/jquery-easing/jquery.easing.min.js"></script>*@
+    <script src="~/Scripts/Proceso/Proceso.js"></script>
+    <script src="~/Asset/js/datatables.bundle.js"></script>
+</body>
+</html>

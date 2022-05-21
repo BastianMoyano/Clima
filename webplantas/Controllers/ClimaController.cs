@@ -14,6 +14,10 @@ namespace webplantas.Controllers
         {
             return View();
         }
+        public ActionResult Historico()
+        {
+            return View();
+        }
         public JsonResult GuardarProceso(proceso proceso)
         {
             if (Session["userName"] == null)
@@ -22,6 +26,15 @@ namespace webplantas.Controllers
 
             }
             return Json(Modelo_Clima.GuardarClima(proceso), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ObtenerhitorialProceso()
+        {
+            if (Session["userName"] == null)
+            {
+                return Json(2, JsonRequestBehavior.AllowGet);
+
+            }
+            return Json(Modelo_Clima.CargarProcesoporusuario(), JsonRequestBehavior.AllowGet);
         }
     }
 }
